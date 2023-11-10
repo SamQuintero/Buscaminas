@@ -1,0 +1,64 @@
+body{
+    background-color: #F2FCF5;
+}
+
+.navbar-personalizado{
+    background-color: #D9EDDF;
+}
+
+.score{
+    position: fixed;
+    top: 70px; /* Cambia esta propiedad para establecer la posición vertical */
+    left: 10px; /* Cambia esta propiedad para establecer la posición horizontal */
+    width: 100px; /* Cambia esta propiedad para establecer el ancho del div */
+    height: 60px; /* Cambia esta propiedad para establecer la altura del div */
+    background-color: #91BFD9; 
+    text-align: center;
+    border-radius: 5px;
+}
+
+.buttons{
+    position: relative;
+    top: 70px;
+    width: 50em;
+}
+
+.top{
+    width: 60px ;
+    height: 60px;
+    background-color:#76897C; 
+    border-radius: 5px;
+    margin-left: 20px;
+    border: none;
+}
+
+.top:hover{
+    background-color: #3A4A40 ;
+}
+
+.numbers{
+    font-family: 'Anton', sans-serif;
+}
+
+.tiempo{
+    width: 100px ;
+    height: 60px;
+    background-color:#3A4A40; 
+    border-radius: 3px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.modal-header {
+    background-color: #1f2e42;
+}
+
+.modal-body {
+    background-color: #414346;
+}
+
+.modal-footer {
+    background-color: #606364;
+}
