@@ -18,9 +18,11 @@ body{
 }
 
 .buttons{
-    position: relative;
-    top: 70px;
+    /*position: relative;
+    left: 550px;
+    top: 70px;*/
     width: 50em;
+    height: fit-content;
 }
 
 .top{
@@ -62,3 +64,38 @@ body{
 .modal-footer {
     background-color: #606364;
 }
+
+#tablero {
+    /*position: relative;
+    left: 150px;
+    top: 170px;*/
+    
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    gap: 2px;
+    background-color: #1f2e42;
+  }
+
+  .casilla {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #9b9b9b;
+    border-radius: 5px;
+    color: #a5a5a5;
+    background-color: #abaaaa;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .max-container{
+    position: relative;
+    top: 70px;
+    width: 100%;
+    
+  }
+  .row{
+    height: fit-content;
+  }
