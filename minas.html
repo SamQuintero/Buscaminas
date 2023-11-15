@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/c69dfcfab2.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kdam+Thmor+Pro&family=Patua+One&family=Pixelify+Sans:wght@700&family=Prompt:ital,wght@1,900&family=Titan+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -37,7 +37,7 @@
               </li>
               
             </ul>
-            <div class="container me-sm-0 me-md-2" style="position:absolute; color:#3A4A40; left:45%; width: fit-content;"><h2>Buscaminas</h2></div>
+            <div class="container me-sm-0 me-md-2" style="position:absolute; color:#3A4A40; left:42%; width: fit-content; font-family: 'Kdam Thmor Pro', sans-serif;"><h1><b>Buscaminas</b></h1></div>
           </div>  
           
           
@@ -53,32 +53,32 @@
     <div class="modal fade" id="settings_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
-          <div class="modal-header text-light p-2">
-              <h5 class="modal-title">Opciones</h5>
-              <button type="button" class="btn-close btn-close-white mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header text-dark p-2">
+              <h5 class="modal-title" style="color: #00262C;">Opciones</h5>
+              <button type="button" class="btn-close  mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body d-flex justify-content-center bg-secondary">
+          <div class="modal-body d-flex justify-content-center " style="background-color: #E6E6E6;">
             <form>
               <div class="bg-light rounded p-3">
-                <input id="easy" type="radio" class="form-check-input" name="difficulty_level">
+                <input id="easy" type="radio" class="form-check-input checkbox" name="difficulty_level">
                 <label for="easy" class="form-label"><b>Fácil</b></label>
                 <br>
-                <input id="normal" type="radio" class="form-check-input" name="difficulty_level" checked>
+                <input id="normal" type="radio" class="form-check-input checkbox" name="difficulty_level" checked>
                 <label for="normal" class="form-label"><b>Normal</b></label>
                 <br>
-                <input id="hard" type="radio" class="form-check-input" name="difficulty_level">
+                <input id="hard" type="radio" class="form-check-input checkbox " name="difficulty_level">
                 <label for="hard" class="form-label"><b>Difícil</b></label>
               </div>
               <br><br>
               <div class="bg-light rounded p-3">
-                <input id="music" type="checkbox" class="form-check-input" checked>
+                <input id="music" type="checkbox" class="form-check-input checkbox" checked>
                 <label for="music" class="form-label"><b>Música</b></label>
-                <input id="sound" type="checkbox" class="form-check-input" checked>
+                <input id="sound" type="checkbox" class="form-check-input checkbox" checked>
                 <label for="sound" class="form-label"><b>Sonido</b></label>
               </div>
               <br><br>
-              <button type="button" class="btn btn-success">Guardar</button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Guardar</button>
+              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
             </form>
           </div>
         </div>
@@ -90,8 +90,8 @@
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header text-light p-2">
-            <h5 class="modal-title" id="modalTitleId">Iniciar sesión</h5>
-              <button type="button" class="btn-close btn-close-white mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="modalTitleId" style="color:#00262C" >Iniciar sesión</h5>
+              <button type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
@@ -106,13 +106,13 @@
                 <i class='fas fa-key input-group-text' style="padding-top:10px;"></i>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn" style="background-color:#A48ABD; color:#fcfcfc">Login</button>
               </div>
             </form>
           </div>
           <div class="modal-footer justify-content-center">
             <span>¿No tienes cuenta?</span>
-            <a role="button" style="color:blue;" data-bs-toggle="modal" data-bs-target="#register_modal">Registrate aquí</a>
+            <a role="button" style="color:rgb(53, 159, 157);" data-bs-toggle="modal" data-bs-target="#register_modal">Registrate aquí</a>
           </div>
         </div>
       </div>
@@ -155,18 +155,25 @@
   </header>
   <main>
   <div class="score">
-    <h6 style="color: #d4ecfb; line-height: 1.5;">BEST <br> <h4 style="color: white; line-height:.7;">1230</h4></h6>
+    <h6 style="color: #e0d7f9; line-height: 1.5;">BEST <br> <h4 style="color: white; line-height:.7;">1230</h4></h6>
+  </div>
+  <div class="global-score">
+    <h6 style="color: #C8DEC5; line-height: 1.5;">BEST SCORES <br> <ul style="color: white; list-style:none; ">
+      <li>1. 98762</li>
+      <li>2. 78762</li>
+      <li>3. 48762</li>
+    </ul></h6>
   </div>
   <div class="max-container container d-flex justify-content-center flex-column ">
    <div class="row ">
     <div class="col d-flex justify-content-center">
       <div class="d-flex justify-content-around buttons">
-        <div class="tiempo"><h1 class="numbers" style="color: #d4ecfb; line-height: 1.5;"> 40 </h1></div>
+        <div class="tiempo"><h2 class="numbers" style="color: #737373;line-height: 1.5; "> 40 </h2></div>
         <div class="d-flex justify-content-center">
-          <button class="top reiniciar"><i class="fa-solid fa-face-smile fa-2xl" style="color: #F9F871;"></i></button>
-          <button class="top flag"><i class="fa-solid fa-flag fa-2xl" style="color: #bd1f1f;"></i></button>
+          <button class="top reiniciar"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
+          <button class="top flag"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;"></i></button>
         </div>
-        <div class="tiempo"><h1 class="numbers" style="color: #d4ecfb;line-height: 1.5;"> 10:00 </h1></div>
+        <div class="tiempo"><h2 class="numbers" style="color: #737373;line-height: 1.5;"> 10:00 </h2></div>
       </div>
     </div>
     </div>
