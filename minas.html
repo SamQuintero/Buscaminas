@@ -37,7 +37,9 @@
               </li>
               
             </ul>
-            <div class="container me-sm-0 me-md-2" style="position:absolute; color:#3A4A40; left:42%; width: fit-content; font-family: 'Kdam Thmor Pro', sans-serif;"><h1><b>Buscaminas</b></h1></div>
+            <div class="container me-sm-0 me-md-2" style="position:absolute; color:#3A4A40; left:42%; width: fit-content; font-family: 'Kdam Thmor Pro', sans-serif;">
+              <h1><b>Buscaminas</b></h1>
+            </div>
           </div>  
           
           
@@ -154,39 +156,53 @@
     </div>
   </header>
   <main>
-  <div class="score">
-    <h6 style="color: #e0d7f9; line-height: 1.5;">BEST <br> <h4 style="color: white; line-height:.7;">1230</h4></h6>
-  </div>
-  <div class="global-score">
-    <h6 style="color: #C8DEC5; line-height: 1.5;">BEST SCORES <br> <ul style="color: white; list-style:none; ">
-      <li>1. 98762</li>
-      <li>2. 78762</li>
-      <li>3. 48762</li>
-    </ul></h6>
-  </div>
-  <div class="max-container container d-flex justify-content-center flex-column ">
-   <div class="row ">
-    <div class="col d-flex justify-content-center">
-      <div class="d-flex justify-content-around buttons">
-        <div class="tiempo"><h2 class="numbers" style="color: #737373;line-height: 1.5; "> 40 </h2></div>
-        <div class="d-flex justify-content-center">
-          <button class="top reiniciar"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
-          <button class="top flag"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;"></i></button>
+    <div>
+      <div class="row">
+        <div class="col-3 d-flex justify-content-center">
+          <div class="score mt-3">
+            <h6 style="color: #e0d7f9;">BEST</h6>
+            <h4 style="color: white;">1230</h4>
+          </div>
         </div>
-        <div class="tiempo"><h2 class="numbers" style="color: #737373;line-height: 1.5;"> 10:00 </h2></div>
+        <div class="col-6 mt-4">
+          <div class="max-container container d-flex justify-content-center flex-column">
+            <div class="row pt-3">
+              <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-around buttons">
+                  <div class="tiempo d-flex align-items-end justify-content-center">
+                    <h2 class="numbers">40</h2>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <button class="top reiniciar"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
+                    <button class="top flag"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;"></i></button>
+                  </div>
+                  <div class="tiempo d-flex align-items-end justify-content-center">
+                    <h2 class="numbers">10:00</h2>
+                  </div>
+               </div>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col d-flex justify-content-center">
+                <div id="tablero"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+          <div class="global-score mt-3 d-flex justify-content-center">
+            <h6 style="color: #C8DEC5;">
+              BEST SCORES
+              <ol class="pt-1" style="color: white;">
+                <li>98762</li>
+                <li>78762</li>
+                <li>48762</li>
+              </ol>
+            </h6>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-   
-   <div class="row mt-5 ">
-    <div class="col d-flex justify-content-center">
-      <div id="tablero" ></div>
-    </div>
-   </div>
-  </div>
-  
-   
-
   </main>
   <footer>
     <!-- place footer here -->
@@ -233,7 +249,5 @@
       console.log(`Clic en la casilla (${fila}, ${columna})`);
     }
   </script>
-
 </body>
-
 </html>
