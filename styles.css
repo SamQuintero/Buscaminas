@@ -151,13 +151,6 @@ body{
 
   }
 
-.pressed {
-    background: #b3b3b3;
-    border: none;
-    font-size: x-large;
-    text-align: center;
-}
-
 .wrapper {
     display: flex;
     justify-content: center;
@@ -204,3 +197,43 @@ body{
   h1{
     font-family: 'Kdam Thmor Pro', sans-serif;
   }
+
+  .pressed {
+    background: #b3b3b3;
+    border: none;
+    font-size: x-large;
+    text-align: center;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.one {
+    color: blue;
+}
+
+.two {
+    color: green;
+}
+
+.three {
+    color: red;
+}
+
+.four {
+    color: navy;
+}
+
+.five {
+    color: darkred;
+}
+
+.six {
+    color: teal;
+}
+
+.seven {
+    color: purple;
+}
+
+.eight {
+    color: gray;
+}

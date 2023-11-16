@@ -223,6 +223,8 @@
     // Obtén el elemento del tablero
     const tablero = document.getElementById('tablero');
 
+    const numbers = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'bomb']
+
     // Genera las casillas y añádelas al tablero
     for (let i = 0; i < filas; i++) {
       for (let j = 0; j < columnas; j++) {
@@ -247,8 +249,12 @@
 
       // Aquí puedes añadir la lógica del juego, por ejemplo, mostrar contenido, verificar si hay bomba, etc.
       console.log(`Clic en la casilla (${fila}, ${columna})`);
-      event.currentTarget.className += " pressed";
-      event.currentTarget.innerHTML = Math.floor(Math.random() * 8) + 1;
+
+      // Test adding random numbers
+      let n = Math.floor(Math.random() * 9) + 1;
+      event.currentTarget.className += " pressed " + numbers[n];
+      event.currentTarget.innerHTML = n;
+      if (n == 9) event.currentTarget.innerHTML = '<i class="fa-solid fa-bomb fa-xl" style="color:black;"></i>';
       event.currentTarget.removeEventListener('click', manejarClicCasilla);
     }
   </script>
