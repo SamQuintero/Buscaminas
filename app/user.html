@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Perfil</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c69dfcfab2.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kdam+Thmor+Pro&family=Patua+One&family=Pixelify+Sans:wght@700&family=Prompt:ital,wght@1,900&family=Titan+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-sm navbar-light navbar-personalizado">
+        <div class="container-lg d-flex justify-content-lg-center me-lg-3 me-sm-0 me-md-2">
+          <a class="navbar-brand" href="javascript:void(0)"><i class="fa-solid fa-bomb fa-2xl" style="color: #3A4A40;"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-lg-2 mt-2 mt-lg-0">
+              <li class="nav-item me-2 ">
+                <a class="nav-link" href="#">Inicio</a>
+              </li>
+              <li class="nav-item me-2">
+                <a class="nav-link" href="#">Score</a>
+              </li>
+              
+            </ul>
+            <div class="container me-sm-0 me-md-2" style="position:absolute; color:#3A4A40; left:45%; width: fit-content;"><h1>Buscaminas</h1></div>
+          </div>  
+          
+          
+          <span style="color: #3A4A40;">
+            <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i> Placeholder
+          </span>
+          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
+         
+        </div>
+    </nav>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal fade" id="settings_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-dark p-2">
+              <h5 class="modal-title" style="color: #00262C;">Opciones</h5>
+              <button type="button" class="btn-close  mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center " style="background-color: #E6E6E6;">
+            <form>
+              <div class="bg-light rounded p-3">
+                <input id="easy" type="radio" class="form-check-input checkbox" name="difficulty_level">
+                <label for="easy" class="form-label"><b>Fácil</b></label>
+                <br>
+                <input id="normal" type="radio" class="form-check-input checkbox" name="difficulty_level" checked>
+                <label for="normal" class="form-label"><b>Normal</b></label>
+                <br>
+                <input id="hard" type="radio" class="form-check-input checkbox " name="difficulty_level">
+                <label for="hard" class="form-label"><b>Difícil</b></label>
+              </div>
+              <br><br>
+              <div class="bg-light rounded p-3">
+                <input id="music" type="checkbox" class="form-check-input checkbox" checked>
+                <label for="music" class="form-label"><b>Música</b></label>
+                <input id="sound" type="checkbox" class="form-check-input checkbox" checked>
+                <label for="sound" class="form-label"><b>Sonido</b></label>
+              </div>
+              <br><br>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Guardar</button>
+              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </header>
+  <main>
+    <div class="container m-3">
+      <div class="row">
+        <div>
+          <h1>Tu Perfil</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 d-flex justify-content-center">
+          <img class="border p-3" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;" src="https://i.ibb.co/Svmsj4s/avatar.png" width="60%">
+        </div>
+        <div class="col-5 border d-flex align-items-center" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;">
+          <form>
+            <div class="input-group mb-3">
+              <label for="username" class="input-group-text">Nombre de usuario:</label>
+              <input id="username" class="form-control bg-light" type="text" placeholder="placeholder" disabled>              
+            </div>
+            <div class="input-group mb-3" box-shadow:2px 2px 2px 2px #9c9b9b5c ;">
+              <label for="useremail" class="input-group-text">E-mail:</label>
+              <input id="useremail" class="form-control bg-light" type="text" placeholder="placeholder" disabled>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" style="border: none; border-radius: 5px; background-color: #f3d7c2;">Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8 mt-4" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;">
+          <div>
+            <div class="row pt-3 pb-3 border">
+              <span>Mejores Puntajes</span>
+            </div>
+            <div class="row pt-1 pb-1 border">
+              <div class="col-4 d-flex justify-content-center">
+                <span>Fácil</span>
+              </div>
+              <div class="col-4 d-flex justify-content-center">
+                <span>Normal</span>
+              </div>
+              <div class="col-4 d-flex justify-content-center">
+                <span>Difícil</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 p-2 border">
+                <ol>
+                  <li>Score 1</li>
+                  <li>Score 2</li>
+                  <li>Score 3</li>
+                </ol>
+              </div>
+              <div class="col-4 p-2 border">
+                <ol>
+                  <li>Score 1</li>
+                  <li>Score 2</li>
+                  <li>Score 3</li>
+                </ol>
+              </div>
+              <div class="col-4 p-2 border">
+                <ol>
+                  <li>Score 1</li>
+                  <li>Score 2</li>
+                  <li>Score 3</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div>
+          <button class="btn " style="background-color:rgb(53, 159, 157); color:#fcfcfc">Cerrar sesion</button>
+          <button class="btn" style="background-color:#A48ABD; color:#fcfcfc">Borrar Puntajes</button>
+          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_modal" style="background-color: #e06f7a; color:#f8f7f7">Borrar Cuenta</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="delete_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header text p-2">
+            <h5 class="modal-title" id="modalTitleId">¿Borrar esta cuenta?</h5>
+              <button type="button" class="btn-close btn-close mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <button class="btn" data-bs-dismiss="modal" style="background-color: #81bf75; color:rgb(246, 246, 246)">No</button>
+            <button class="btn" style="background-color: #e06f7a; color:#f8f7f7">Sí, borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
