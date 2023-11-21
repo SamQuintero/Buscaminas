@@ -45,7 +45,7 @@
           <a type="text"  data-bs-toggle="modal" role="button" data-bs-target="#login_modal" style="color: #3A4A40;;">
             <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i> Ingresar
           </a>
-          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
+          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal" onclick="openSettings()"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
          
         </div>
     </nav>
@@ -61,13 +61,13 @@
           <div class="modal-body d-flex justify-content-center " style="background-color: #E6E6E6;">
             <form>
               <div class="bg-light rounded p-3">
-                <input id="easy" type="radio" class="form-check-input checkbox" name="difficulty_level">
+                <input id="easy" type="radio" class="form-check-input checkbox" name="difficulty_level" value="easy">
                 <label for="easy" class="form-label"><b>Fácil</b></label>
                 <br>
-                <input id="normal" type="radio" class="form-check-input checkbox" name="difficulty_level" checked>
+                <input id="normal" type="radio" class="form-check-input checkbox" name="difficulty_level" value="normal" checked>
                 <label for="normal" class="form-label"><b>Normal</b></label>
                 <br>
-                <input id="hard" type="radio" class="form-check-input checkbox " name="difficulty_level">
+                <input id="hard" type="radio" class="form-check-input checkbox" name="difficulty_level" value="hard">
                 <label for="hard" class="form-label"><b>Difícil</b></label>
               </div>
               <br><br>
@@ -78,7 +78,7 @@
                 <label for="sound" class="form-label"><b>Sonido</b></label>
               </div>
               <br><br>
-              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Guardar</button>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1" data-bs-dismiss="modal" aria-label="Close" onclick="saveSettings()">Guardar</button>
               <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
             </form>
           </div>
