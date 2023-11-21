@@ -15,7 +15,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kdam+Thmor+Pro&family=Patua+One&family=Pixelify+Sans:wght@700&family=Prompt:ital,wght@1,900&family=Titan+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
@@ -158,13 +157,13 @@
   <main>
     <div>
       <div class="row">
-        <div class="col-3 d-flex justify-content-center">
+        <div class="col-2 d-flex justify-content-center">
           <div class="score mt-3">
             <h6 style="color: #e0d7f9;">BEST</h6>
             <h4 style="color: white;">1230</h4>
           </div>
         </div>
-        <div class="col-6 mt-4">
+        <div class="col-8 mt-4">
           <div class="max-container container d-flex justify-content-center flex-column">
             <div class="row pt-3">
               <div class="col-3">
@@ -189,7 +188,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 d-flex justify-content-center">
+        <div class="col-2 d-flex justify-content-center">
           <div class="global-score mt-3 d-flex justify-content-center">
             <h6 style="color: #C8DEC5;">
               BEST SCORES
@@ -215,48 +214,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-  <script>
-    // Tamaño del tablero
-    const filas = 8;
-    const columnas = 8;
-
-    // Obtén el elemento del tablero
-    const tablero = document.getElementById('tablero');
-
-    const numbers = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'bomb']
-
-    // Genera las casillas y añádelas al tablero
-    for (let i = 0; i < filas; i++) {
-      for (let j = 0; j < columnas; j++) {
-        const casilla = document.createElement('div');
-        casilla.classList.add('casilla');
-        casilla.dataset.fila = i;
-        casilla.dataset.columna = j;
-        casilla.textContent = ''; // Puedes ajustar el contenido según sea necesario
-
-        // Agrega un evento de clic a cada casilla (aquí puedes manejar la lógica del juego)
-        casilla.addEventListener('click', manejarClicCasilla);
-
-        // Añade la casilla al tablero
-        tablero.appendChild(casilla);
-      }
-    }
-
-    // Función de ejemplo para manejar el clic en una casilla
-    function manejarClicCasilla(event) {
-      const fila = event.target.dataset.fila;
-      const columna = event.target.dataset.columna;
-
-      // Aquí puedes añadir la lógica del juego, por ejemplo, mostrar contenido, verificar si hay bomba, etc.
-      console.log(`Clic en la casilla (${fila}, ${columna})`);
-
-      // Test adding random numbers
-      let n = Math.floor(Math.random() * 9) + 1;
-      event.currentTarget.className += " pressed " + numbers[n];
-      event.currentTarget.innerHTML = n;
-      if (n == 9) event.currentTarget.innerHTML = '<i class="fa-solid fa-bomb fa-xl" style="color:black;"></i>';
-      event.currentTarget.removeEventListener('click', manejarClicCasilla);
-    }
-  </script>
+  <script src="minas.js"></script>
 </body>
 </html>
