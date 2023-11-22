@@ -61,7 +61,7 @@ function revealCell(event) {
 }
 
 function saveSettings() {
-    let current_difficulty = sessionStorage.getItem("current_difficutly");
+    let current_difficulty = sessionStorage.getItem("current_difficulty");
     if (!current_difficulty) current_difficulty = "normal";
     let settings_difficulty;
     let difficulty_options = document.getElementsByName("difficulty_level");
@@ -72,7 +72,7 @@ function saveSettings() {
 
     if (current_difficulty == settings_difficulty) return;
 
-    loadBoard()
+    loadBoard();
 }
 
 function openSettings() {
