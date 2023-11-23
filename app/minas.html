@@ -41,10 +41,17 @@
             </div>
           </div>  
           
-          
+         <div>
           <a type="text"  data-bs-toggle="modal" role="button" data-bs-target="#login_modal" style="color: #3A4A40;;">
-            <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i> Ingresar
+            <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i><div id="UserName"  style="display: none;"></div> <span>Ingresar</span>
           </a>
+         </div> 
+         <div style="display: none;">
+          <a role="button" data-bs-toggle="modal" href="user.html" style="color: #3A4A40;">
+              <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2" style="color: #3A4A40;"></i>
+              <span>User</span>
+          </a>
+        </div>
           <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal" onclick="openSettings()"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
          
         </div>
@@ -155,14 +162,23 @@
     </div>
   </header>
   <main>
+     
     <div>
       <div class="row">
         <div class="col-2 d-flex justify-content-center">
-          <div class="score mt-3">
-            <h6 style="color: #e0d7f9;">BEST</h6>
-            <h4 style="color: white;">1230</h4>
-          </div>
+          <div style="width: 40%;">
+            <div class="score mt-3">
+              <h6 style="color: #e0d7f9;">BEST</h6>
+              <h4 style="color: white;">1230</h4>
+            </div>
+    
+              <div class="current mt-3">
+                <h6 style="color: #e0d7f9;">SCORE</h6>
+                <h4 style="color: white;">0</h4>
+              </div>
+          </div>   
         </div>
+        
         <div class="col-8 mt-4">
           <div class="max-container container d-flex justify-content-center flex-column">
             <div class="row pt-3">
@@ -172,8 +188,11 @@
                 </div>
               </div>
               <div class="col-6 d-flex justify-content-around">
-                <button class="top reiniciar px-3" onclick="reloadBoard()"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
-                <button id="Flag" class="top flag px-3"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;" onclick="banderas()"></i></button>
+
+
+                <button class="top reiniciar px-3" onclick="loadBoard()"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
+                <button id="Flag" class="top flag px-3" onclick="banderas()"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;" ></i></button>
+
               </div>
               <div class="col-3">
                 <div class="tiempo d-flex align-items-end justify-content-center">
@@ -188,6 +207,7 @@
             </div>
           </div>
         </div>
+        
         <div class="col-2 d-flex justify-content-center">
           <div class="global-score mt-3 d-flex justify-content-center">
             <h6 style="color: #C8DEC5;">
@@ -200,6 +220,7 @@
             </h6>
           </div>
         </div>
+       
       </div>
     </div>
   </main>

@@ -1,9 +1,9 @@
 const timer = document.getElementById("timer");
 let seconds = 0;
 let minutes = 0;
-let bombs=10;
+let bombs;
 let matriz=[];
-let bandera=0;
+let bandera;
 
 let rows;
 let cols;
@@ -28,6 +28,7 @@ setInterval(() => {
 function loadBoard() {
     let difficulty_options = document.getElementsByName("difficulty_level");
     let difficulty;
+    bandera=0;
     for (let i = 0; i < difficulty_options.length; i++) {
         if (difficulty_options[i].checked)
             difficulty = difficulty_options[i].value;
@@ -38,15 +39,20 @@ function loadBoard() {
     switch (difficulty) {
         case "easy":
             rows = cols = 8;
+            bombs=10;
             break;
         case "normal":
             rows = cols = 16;
+            bombs=40;
             break;
         case "hard":
             rows = 16;
             cols = 30;
+            bombs=90;
             break;
     }
+    let minasNumber=document.getElementById("minasNumber");
+    minasNumber.innerHTML=bombs;
 
     const board = document.getElementById("tablero");
     board.innerHTML = "";
@@ -66,6 +72,7 @@ function loadBoard() {
             
             // Añade la casilla al tablero
             board.appendChild(casilla);
+
         }
     }
     matrizGrid();
@@ -73,13 +80,11 @@ function loadBoard() {
 
 // Función de ejemplo para manejar el clic en una casilla
 function revealCell(event) {
-    
+    const eventoClic = new Event('click');
     const fila = event.target.dataset.fila;
     const columna = event.target.dataset.columna;
 
-    // Aquí puedes añadir la lógica del juego, por ejemplo, mostrar contenido, verificar si hay bomba, etc.
-    console.log(`Clic en la casilla (${fila}, ${columna})`);
-
+    //para que se muestre el banderín
     if (bandera!=0){
       let minasNumber=document.getElementById("minasNumber");
       if(!event.currentTarget.className.includes("bandera")){
@@ -94,28 +99,104 @@ function revealCell(event) {
         event.currentTarget.classList.remove("bandera")
       }
     }
+    //Abrir casillas
     else{   
       let n = matriz[fila][columna];
-      event.currentTarget.className += " pressed " + numbers[n];
       event.currentTarget.innerHTML = n;
-      
+      //Si se preciona una bomba
       if (n == 666){
         mostrarTodo();
 
+      }
+      else{
+        event.currentTarget.className += " pressed " + numbers[n];
+        if (n==0)event.currentTarget.innerHTML=numbers[0];
+        event.currentTarget.removeEventListener('click', revealCell);
+        //Recursividad si la casilla no tiene número
+        if(event.currentTarget.innerHTML==""){
+          if(fila>0 && columna>0){
+            let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)-1));
+            toOpen.dispatchEvent(eventoClic)
+          }
+          if(fila>0){
+            let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+          
+          if(fila>0 && Math.floor(columna)+1< cols){
+            let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+          if(columna>0){
+            let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)-1));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+            
+          if(Math.floor(columna)+1<cols){
+            let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+            
+          if(Math.floor(fila)+1<rows && columna>0){
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)-1));
+            toOpen.dispatchEvent(eventoClic)
+          }
+            
+          if(Math.floor(fila)+1<rows ){
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+          }
+           
+          if(Math.floor(fila)+1<rows && Math.floor(columna)+1<cols){
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+          }
+        }
+        else {
+         
+          if(fila>0 && matriz[Math.floor(fila)-1][Math.floor(columna)]==0){
+            let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+          
+          else if(columna>0 && matriz[Math.floor(fila)][Math.floor(columna)-1]==0){
+            let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)-1));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+            
+          else if(Math.floor(columna)+1<cols && matriz[Math.floor(fila)][Math.floor(columna)+1]==0){
+            let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+            
+          }
+            
+            
+          else if(Math.floor(fila)+1<rows && matriz[Math.floor(fila)+1][Math.floor(columna)]==0){
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
+            toOpen.dispatchEvent(eventoClic)
+          }
+           
+          
+          
+        }
+        
+        //abrirVariasCeldas(fila, columna);
+        
+        
+        
       } 
-      if (n==0)event.currentTarget.innerHTML=numbers[0];
-      event.currentTarget.removeEventListener('click', revealCell);
+      
       
     }
 }
 
-function abrirVariasCeldas(r, c){
-  let toOpen=document.getElementById(""+r+ " "+c);
-  if(toOpen.innerHTML==""){
-   
-  }
 
-}
 
 function mostrarTodo(){
   for (let i = 0; i < rows; i++) {
@@ -232,6 +313,7 @@ function banderas(){
         bandera=0;
         flag.classList.remove("flag_pressed");
     }
+
   
 }
 
