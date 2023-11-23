@@ -223,8 +223,9 @@ function saveSettings() {
             settings_difficulty = difficulty_options[i].value;
     }
 
-    if (current_difficulty == settings_difficulty) return;
+    sessionStorage.setItem("current_difficulty", settings_difficulty);
 
+    getTopScores();
     loadBoard();
 }
 
@@ -236,6 +237,16 @@ function openSettings() {
             current_difficulty = difficulty_options[i].value;
     }
     sessionStorage.setItem("current_difficulty", current_difficulty);
+}
+
+function cancelSettings() {
+    let current_difficulty = sessionStorage.getItem("current_difficulty");
+    let difficulty_options = document.getElementsByName("difficulty_level");
+    for (let i = 0; i < 3; i++) {
+        difficulty_options[i].removeAttribute("checked");
+        if (difficulty_options[i].value == current_difficulty)
+            difficulty_options[i].click();
+    }
 }
 
 function matrizGrid(){
@@ -287,23 +298,128 @@ function matrizGrid(){
       matriz[i][j]=count;
       count=0;
     }
-
-
 }
 }
 function reiniciar(){
   
 }
 function banderas(){
-  if(bandera==0){
     let flag= document.getElementById("Flag");
-    bandera=1;
+    if(bandera==0){
+        flag.classList.add("flag_pressed");
+        bandera=1;
+    }
+    else{
+        bandera=0;
+        flag.classList.remove("flag_pressed");
+    }
 
-  }
-  else{
-    bandera=0;
-  }
   
 }
 
+function reloadBoard() {
+    sessionStorage.setItem("timer", 0);
+    document.getElementById("timer").innerHTML = "00:00";
+    seconds = minutes = 0;
+    loadBoard();
+}
+
+function clearInput(name) {
+    let inputs = document.getElementsByName(name);
+    for (let i = 0; i < inputs.length; i++)
+        inputs[i].value = "";
+}
+
+
+function registerUser() {
+    let inputs = document.getElementsByName("register_input");
+    
+    // Validate inputs
+    for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value) {
+            alert("Llena todos los campos");
+            return;
+        }
+    }
+
+    if (document.getElementById("new_pwd").value != document.getElementById("confirm_pwd").value) {
+        alert("Las contraseñas deben coincidir");
+        return;
+    }
+
+    let new_user = {
+        "username": inputs[0].value,
+        "email": inputs[1].value,
+        "password": inputs[2].value
+    };
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:3000/users");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(new_user));
+    xhr.onload = () => {
+        if (xhr.status != 200)
+            alert(xhr.responseText);
+        else {
+            alert("Usuario registrado");
+            // Change to user-logged screen
+        }
+    }
+}
+
+function login() {
+    let email = document.getElementById("email").value;
+    let pwd = document.getElementById("pwd").value;
+
+    if (!email || !pwd) {
+        alert("Llena todos los campos");
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/users/" + email + "/" + pwd);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status != 200) {
+            alert("Credenciales incorrectas");
+        } else {
+            alert("Log in successful");
+            // Change to user-logged screen
+            window.location.reload();
+        }
+    }
+}
+
+function getTopScores() {
+    let current_difficulty = sessionStorage.getItem("current_difficulty");
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/scores/" + current_difficulty);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status != 200) {
+            alert("Algo salio mal")
+        } else {
+            let best_scores = document.getElementsByName("best_scores");
+            for (let i = 0; i < best_scores.length; i++) {
+                best_scores[i].innerHTML = JSON.parse(xhr.responseText)[i];
+            }
+        }
+    }
+}
+
+// function getPersonalBest() {
+//     let current_difficulty = sessionStorage.getItem("current_difficulty");
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("GET", "http://localhost:3000/scores/" + );
+//     xhr.setRequestHeader("Content-Type", "application/json");
+//     xhr.send();
+//     xhr.onload = () => {
+        
+//     }
+// }
+
 loadBoard();
+sessionStorage.setItem("current_difficulty", "normal");
+getTopScores();

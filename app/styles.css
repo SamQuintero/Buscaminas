@@ -66,7 +66,7 @@ body{
 	border-top-color:  #9fdcdb;
 }
 .flag:hover{
-    background-color:#649a99; 
+    background-color:#649a99;
 }
 
 .numbers{
@@ -300,6 +300,10 @@ body{
     font-family: 'Kdam Thmor Pro', sans-serif;
     padding: .3rem;
 
+}
+
+.flag_pressed {
+    background-color: #649a99;
 }
 
 .cell_easy{
