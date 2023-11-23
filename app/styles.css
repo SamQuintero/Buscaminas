@@ -7,10 +7,20 @@ body{
 }
 
 .score{
-    /* position: fixed; */
     top: 70px; /* Cambia esta propiedad para establecer la posición vertical */
     left: 10px; /* Cambia esta propiedad para establecer la posición horizontal */
-    width: 40%; /* Cambia esta propiedad para establecer el ancho del div */
+    width: 100%; /* Cambia esta propiedad para establecer el ancho del div */
+    height: fit-content;
+    /* Cambia esta propiedad para establecer la altura del div */
+    background-color: #A48ABD; 
+    text-align: center;
+    border-radius: 5px;
+}
+.current{
+    position: static; 
+    top: 100px; /* Cambia esta propiedad para establecer la posición vertical */
+    left: 10px; /* Cambia esta propiedad para establecer la posición horizontal */
+    width: 100%; /* Cambia esta propiedad para establecer el ancho del div */
     height: fit-content;
     /* Cambia esta propiedad para establecer la altura del div */
     background-color: #A48ABD; 
