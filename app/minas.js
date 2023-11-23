@@ -114,46 +114,54 @@ function revealCell(event) {
         event.currentTarget.removeEventListener('click', revealCell);
         //Recursividad si la casilla no tiene número
         if(event.currentTarget.innerHTML==""){
-          if(fila>0 && columna>0){
+          if(Math.floor(fila)>0 && Math.floor(columna)>0){
             let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)-1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
           }
-          if(fila>0){
+          if(Math.floor(fila)>0){
             let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
             
           }
           
-          if(fila>0 && Math.floor(columna)+1< cols){
+          if(Math.floor(fila)>0 && Math.floor(columna)+1< cols){
             let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)+1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
             
           }
-          if(columna>0){
+          if(Math.floor(columna)>0){
             let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)-1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
             
           }
             
           if(Math.floor(columna)+1<cols){
             let toOpen=document.getElementById(""+(Math.floor(fila))+ " "+(Math.floor(columna)+1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
             
           }
             
-          if(Math.floor(fila)+1<rows && columna>0){
+          if(Math.floor(fila)+1<rows && Math.floor(columna)>0){
             let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)-1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
           }
             
-          if(Math.floor(fila)+1<rows ){
-            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
-            toOpen.dispatchEvent(eventoClic)
+          if(Math.floor(fila)+1<rows){
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)));
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
           }
            
           if(Math.floor(fila)+1<rows && Math.floor(columna)+1<cols){
             let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
-            toOpen.dispatchEvent(eventoClic)
+            if (!toOpen.classList.contains("pressed"))
+              toOpen.dispatchEvent(eventoClic)
           }
         }
         else {
@@ -178,7 +186,7 @@ function revealCell(event) {
             
             
           else if(Math.floor(fila)+1<rows && matriz[Math.floor(fila)+1][Math.floor(columna)]==0){
-            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)+1));
+            let toOpen=document.getElementById(""+(Math.floor(fila)+1)+ " "+(Math.floor(columna)));
             toOpen.dispatchEvent(eventoClic)
           }
            
@@ -199,6 +207,7 @@ function revealCell(event) {
 
 
 function mostrarTodo(){
+  game_on = false;
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       let casillaAbrir=document.getElementById(""+i + " "+j);
