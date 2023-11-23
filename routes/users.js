@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("node:fs");
 const router = express.Router();
 const path = require ('path');
+const data_handler = require("../data_handler");
 
 router.post("/", (req, res) => {
     let Users = JSON.parse(fs.readFileSync(path.resolve(__dirname + "/../db_test/users.json"), "utf-8"));
@@ -21,7 +22,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/:email/:password", (req, res) => {
-    let Users = JSON.parse(fs.readFileSync(path.resolve(__dirname + "/../db_test/users.json"), "utf-8"));
+    let Users = JSON.parse(data_handler.getUsers);
     let found_user = Users.find(u => u.email == req.params.email && u.password == req.params.password);
 
     if (!found_user) res.status(404).send();
