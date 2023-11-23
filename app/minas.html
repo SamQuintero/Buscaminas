@@ -79,7 +79,7 @@
               </div>
               <br><br>
               <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1" data-bs-dismiss="modal" aria-label="Close" onclick="saveSettings()">Guardar</button>
-              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close" onclick="cancelSettings()">Cancelar</button>
             </form>
           </div>
         </div>
@@ -92,22 +92,22 @@
         <div class="modal-content">
           <div class="modal-header text-light p-2">
             <h5 class="modal-title" id="modalTitleId" style="color:#00262C" >Iniciar sesión</h5>
-              <button type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('login_input')"></button>
           </div>
           <div class="modal-body">
             <form>
               <label for="email" class="form-label">Correo</label>
               <div class="input-group mb-3">
-                <input type="text" id="email" class="form-control" placeholder="Ingresa tu correo" required>
+                <input type="text" id="email" class="form-control" placeholder="Ingresa tu correo" name="login_input" required>
                 <i class='fas fa-user-alt input-group-text' style="padding-top:10px;"></i>
               </div>
               <label for="pwd" class="form-label">Contraseña</label>
               <div class="input-group mb-3">
-                <input type="text" id="pwd" class="form-control" placeholder="Ingresa tu contraseña" required>
+                <input type="password" id="pwd" class="form-control" placeholder="Ingresa tu contraseña" name="login_input" required>
                 <i class='fas fa-key input-group-text' style="padding-top:10px;"></i>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn" style="background-color:#A48ABD; color:#fcfcfc">Login</button>
+                <button type="button" class="btn" style="background-color:#A48ABD; color:#fcfcfc" onclick="login()">Login</button>
               </div>
             </form>
           </div>
@@ -126,28 +126,28 @@
           <form>
             <div class="modal-header">
               <h5 class="modal-title" id="modalTitleId">Registrarse</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('register_input')"></button>
             </div>
             <div class="modal-body">
               <div class="container">
                 <div class="row">
                   <div class="col-12 mb-2">
-                    <input type="text" id="new_userName" class="form-control" placeholder="Nombre de usuario" required>
+                    <input type="text" id="new_userName" class="form-control" placeholder="Nombre de usuario" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="text" id="new_email" class="form-control" placeholder="E-mail" required>
+                    <input type="text" id="new_email" class="form-control" placeholder="E-mail" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="password" id="new_pwd" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" id="new_pwd" class="form-control" placeholder="Contraseña" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="password" id="confirm_pwd" class="form-control" placeholder="Confirmar contraseña" required>
+                    <input type="password" id="confirm_pwd" class="form-control" placeholder="Confirmar contraseña" name="register_input" required>
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Registrarse</button>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1" onclick="registerUser()">Registrarse</button>
             </div>
           </form>
         </div>
@@ -172,12 +172,12 @@
                 </div>
               </div>
               <div class="col-6 d-flex justify-content-around">
-                <button class="top reiniciar px-3" onclick="loadBoard()"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
+                <button class="top reiniciar px-3" onclick="reloadBoard()"><i class="fa-solid fa-face-smile fa-2xl" style="color: rgb(249, 228, 124);"></i></button>
                 <button id="Flag" class="top flag px-3"><i class="fa-solid fa-flag fa-2xl" style="color: #f12b2b;" onclick="banderas()"></i></button>
               </div>
               <div class="col-3">
                 <div class="tiempo d-flex align-items-end justify-content-center">
-                  <h2 id="timer" class="numbers">0</h2>
+                  <h2 id="timer" class="numbers">00:00</h2>
                 </div>
               </div>
             </div>
@@ -193,9 +193,9 @@
             <h6 style="color: #C8DEC5;">
               BEST SCORES
               <ol class="pt-1" style="color: white;">
-                <li>98762</li>
-                <li>78762</li>
-                <li>48762</li>
+                <li name="best_scores">98762</li>
+                <li name="best_scores">78762</li>
+                <li name="best_scores">48762</li>
               </ol>
             </h6>
           </div>
