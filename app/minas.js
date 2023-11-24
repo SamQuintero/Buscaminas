@@ -27,6 +27,11 @@ setInterval(() => {
 
 
 function loadBoard() {
+    game_on=true;
+    sessionStorage.setItem("timer", 0);
+    document.getElementById("timer").innerHTML = "00:00";
+    seconds = minutes = 0;
+
     let difficulty_options = document.getElementsByName("difficulty_level");
     let difficulty;
     bandera=0;
@@ -382,14 +387,6 @@ function banderas(){
   
 }
 
-function reloadBoard() {
-    game_on=true;
-    sessionStorage.setItem("timer", 0);
-    document.getElementById("timer").innerHTML = "00:00";
-    seconds = minutes = 0;
-    loadBoard();
-}
-
 function clearInput(name) {
     let inputs = document.getElementsByName(name);
     for (let i = 0; i < inputs.length; i++)
@@ -516,3 +513,8 @@ function confettiDisplay(){
 loadBoard();
 sessionStorage.setItem("current_difficulty", "normal");
 getTopScores();
+let loggedUser = sessionStorage.getItem("loggedUser");
+if (loggedUser) {
+  showLoginScreen(loggedUser);
+  getPersonalBest(loggedUser);
+}
