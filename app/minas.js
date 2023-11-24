@@ -4,6 +4,7 @@ let minutes = 0;
 let bombs;
 let matriz=[];
 let bandera;
+let firstRound;
 
 let rows;
 let cols;
@@ -29,6 +30,7 @@ function loadBoard() {
     let difficulty_options = document.getElementsByName("difficulty_level");
     let difficulty;
     bandera=0;
+    firstRound=1;
     for (let i = 0; i < difficulty_options.length; i++) {
         if (difficulty_options[i].checked)
             difficulty = difficulty_options[i].value;
@@ -69,6 +71,10 @@ function loadBoard() {
       
             // Agrega un evento de clic a cada casilla (aquí puedes manejar la lógica del juego)
             casilla.addEventListener('click', revealCell);
+            casilla.addEventListener("contextmenu", (e) => {
+              e.preventDefault();
+            });
+            casilla.addEventListener('contextmenu', banderaRightClick);
             
             // Añade la casilla al tablero
             board.appendChild(casilla);
@@ -77,16 +83,32 @@ function loadBoard() {
     }
     matrizGrid();
 }
-
-// Función de ejemplo para manejar el clic en una casilla
-function revealCell(event) {
+function banderaRightClick(event){
     const eventoClic = new Event('click');
     const fila = event.target.dataset.fila;
     const columna = event.target.dataset.columna;
-
+    if(!event.currentTarget.className.includes("bandera")){
+      minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)-1;
+      event.currentTarget.classList.add("bandera");
+      event.currentTarget.innerHTML = '<i class="fa-solid fa-flag  " style="color: #f12b2b;"></i>';
+    }
+    else{
+      minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)+1;
+      event.currentTarget.innerHTML ="";
+      event.currentTarget.classList.remove("bandera")
+    }
+}
+// Función de ejemplo para manejar el clic en una casilla
+function revealCell(event) {
+  
+    const eventoClic = new Event('click');
+    const fila = event.target.dataset.fila;
+    const columna = event.target.dataset.columna;
+    let minasNumber=document.getElementById("minasNumber");
+    
     //para que se muestre el banderín
     if (bandera!=0){
-      let minasNumber=document.getElementById("minasNumber");
+      
       if(!event.currentTarget.className.includes("bandera")){
        
         minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)-1;
@@ -98,21 +120,42 @@ function revealCell(event) {
         event.currentTarget.innerHTML ="";
         event.currentTarget.classList.remove("bandera")
       }
+      
     }
+
     //Abrir casillas
-    else{   
+    else if(!event.currentTarget.className.includes("bandera")) {
+        
       let n = matriz[fila][columna];
       event.currentTarget.innerHTML = n;
       //Si se preciona una bomba
       if (n == 666){
-        mostrarTodo();
-
+        //Si es la primera vez que se clickea se tiene que evitar que sea una bomba si lo es se vuelven a mover las bombas de lugar
+        if(firstRound==1){
+          matrizGrid();
+          if(matriz[fila][columna]==6)matrizGrid();
+          firstRound=0;
+          let n1 = matriz[fila][columna];
+          event.currentTarget.innerHTML = n1;
+          event.currentTarget.className += " pressed " + numbers[n1];
+          if (n1==0)event.currentTarget.innerHTML=numbers[0];
+        }
+        else{
+          mostrarTodo();
+          bombDisplay();
+        }
+       
       }
       else{
+        firstRound=0;
         event.currentTarget.className += " pressed " + numbers[n];
         if (n==0)event.currentTarget.innerHTML=numbers[0];
         event.currentTarget.removeEventListener('click', revealCell);
         //Recursividad si la casilla no tiene número
+        if(minasNumber.innerHTML=="0"){
+          console.log("si compara")
+          isWin();
+        }
         if(event.currentTarget.innerHTML==""){
           if(Math.floor(fila)>0 && Math.floor(columna)>0){
             let toOpen=document.getElementById(""+(Math.floor(fila)-1)+ " "+(Math.floor(columna)-1));
@@ -191,17 +234,14 @@ function revealCell(event) {
           }
            
           
-          
         }
-        
-        //abrirVariasCeldas(fila, columna);
-        
-        
         
       } 
       
       
     }
+   
+    
 }
 
 
@@ -221,6 +261,24 @@ function mostrarTodo(){
   }
 
 }
+function isWin(){
+  let yetCloseCells=false;
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let casilla=document.getElementById(""+i + " "+j);
+      if(!casilla.className.includes("pressed") && !casilla.className.includes("bandera")){
+        yetCloseCells=true;
+      }
+    }
+  }
+  if(!yetCloseCells){
+    console.log("win");
+    game_on=false;
+  }
+
+
+}
+
 
 function saveSettings() {
     let current_difficulty = sessionStorage.getItem("current_difficulty");
@@ -309,9 +367,7 @@ function matrizGrid(){
     }
 }
 }
-function reiniciar(){
-  
-}
+
 function banderas(){
     let flag= document.getElementById("Flag");
     if(bandera==0){
@@ -327,6 +383,7 @@ function banderas(){
 }
 
 function reloadBoard() {
+    game_on=true;
     sessionStorage.setItem("timer", 0);
     document.getElementById("timer").innerHTML = "00:00";
     seconds = minutes = 0;
@@ -443,6 +500,18 @@ function getPersonalBest(username) {
       }
     }
 }
+function bombDisplay(){
+  let Loading=document.getElementById("explotion")
+  Loading.style.display="block";
+  setTimeout(()=>{
+      Loading.style.display="none";
+      
+  }, 4000)
+}
+function confettiDisplay(){
+  
+}
+
 
 loadBoard();
 sessionStorage.setItem("current_difficulty", "normal");
