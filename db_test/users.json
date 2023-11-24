@@ -1,1 +1,27 @@
-[{"username":"name","email":"email","password":"pwd","scores":{"easy":[0],"normal":[0],"hard":[0]}},{"username":"other","email":"none","password":"pwd","scores":{"easy":[0],"normal":[0],"hard":[0]}},{"username":"third","email":"email","password":"pwd","scores":{"easy":[0],"normal":[0],"hard":[0]}}]
+[
+    {
+        "username": "admin",
+        "email": "admin@mines.com",
+        "password": "pwd",
+        "scores": {
+            "easy": [
+                {
+                    "score": 0,
+                    "date": 0
+                }
+            ],
+            "normal": [
+                {
+                    "score": 0,
+                    "date": 0
+                }
+            ],
+            "hard": [
+                {
+                    "score": 0,
+                    "date": 0
+                }
+            ]
+        }
+    }
+]

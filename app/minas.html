@@ -43,15 +43,15 @@
             </div>
           </div>  
           
-         <div>
+         <div id="loginIcon">
           <a type="text"  data-bs-toggle="modal" role="button" data-bs-target="#login_modal" style="color: #3A4A40;;">
             <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i><div id="UserName"  style="display: none;"></div> <span>Ingresar</span>
           </a>
          </div> 
-         <div style="display: none;">
+         <div id="loggedUserIcon" style="display: none;">
           <a role="button" data-bs-toggle="modal" href="user.html" style="color: #3A4A40;">
               <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2" style="color: #3A4A40;"></i>
-              <span>User</span>
+              <span id="loggedUsername">User</span>
           </a>
         </div>
           <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal" onclick="openSettings()"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
@@ -101,7 +101,7 @@
         <div class="modal-content">
           <div class="modal-header text-light p-2">
             <h5 class="modal-title" id="modalTitleId" style="color:#00262C" >Iniciar sesión</h5>
-              <button type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('login_input')"></button>
+              <button id="close_login_modal" type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('login_input')"></button>
           </div>
           <div class="modal-body">
             <form>
@@ -135,7 +135,7 @@
           <form>
             <div class="modal-header">
               <h5 class="modal-title" id="modalTitleId">Registrarse</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('register_input')"></button>
+                <button id="close_register_modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('register_input')"></button>
             </div>
             <div class="modal-body">
               <div class="container">
@@ -171,7 +171,7 @@
           <div style="width: 40%;">
             <div class="score mt-3">
               <h6 style="color: #e0d7f9;">BEST</h6>
-              <h4 style="color: white;">1230</h4>
+              <h4 id="personal_best" style="color: white;">1230</h4>
             </div>
     
               <div class="current mt-3">

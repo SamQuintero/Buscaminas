@@ -3,31 +3,44 @@ const fs = require("node:fs");
 const router = express.Router();
 const path = require ('path');
 const data_handler = require("../data_handler");
+const mongoose = require("mongoose");
 
 router.post("/", (req, res) => {
-    let Users = JSON.parse(fs.readFileSync(path.resolve(__dirname + "/../db_test/users.json"), "utf-8"));
-    let find_user = Users.find(u => u.username == req.body.username);
-    if (find_user) res.status(409).send("Nombre de usuario ya existe");
-    else {
-        let new_user = req.body;
-        new_user.scores = {
-            "easy":[0],
-            "normal":[0],
-            "hard":[0]
+    data_handler.Users.find({
+        username: {$regex:req.body.username}
+    }).then((docs) => {
+        if (docs.length == 0) {
+            data_handler.registerNewUser(req.body);
+            res.status(200).send();
+        } else {
+            res.status(409).send("Nombre de usuario ya existe");
         }
-        Users.push(req.body);
-        res.status(200).send();
-        fs.writeFileSync(path.resolve(__dirname + "/../db_test/users.json"), JSON.stringify(Users));
-    }
+    }).catch((err) => {console.log(err);});
 });
 
-router.get("/:email/:password", (req, res) => {
-    let Users = JSON.parse(data_handler.getUsers);
-    let found_user = Users.find(u => u.email == req.params.email && u.password == req.params.password);
+router.get("/:username", (req, res) => {
+    data_handler.Users.find({
+        username: {$regex:req.params.username}
+    }).then((docs) => {
+        if (docs.length == 0) {
+            res.status(404).send();
+        } else {
+            res.status(200).send(docs[0]);
+        }
+    })
+})
 
-    if (!found_user) res.status(404).send();
-    res.status(200).send();
-    
+router.get("/:email/:password", (req, res) => {
+    data_handler.Users.find({
+        email: {$regex:req.params.email},
+        password: {$regex:req.params.password}
+    }).then((docs) => {
+        if (docs.length == 0) {
+            res.status(404).send();
+        } else {
+            res.status(200).send(docs[0].username);
+        }
+    })
 });
 
 module.exports = router;

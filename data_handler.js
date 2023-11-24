@@ -4,21 +4,6 @@ const bcrypt = require("bcrypt");
 let mongoConnection = "mongodb+srv://admin:dorx123@myapp.8yzr4bk.mongodb.net/Minesweeper";
 let db = mongoose.connection;
 
-let userScoresSchema = new mongoose.Schema({
-    easy: {
-        type: Array,
-        default: [0],
-    },
-    normal: {
-        type: Array,
-        default: [0],
-    },
-    hard: {
-        type: Array,
-        default: [0],
-    }
-})
-
 let userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -32,7 +17,41 @@ let userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    scores: userScoresSchema,
+    scores: {
+        easy: [
+            {
+                score: {
+                    type: Number
+                },
+                date: {
+                    type: Date,
+                    default: Date.now
+                }
+            }
+        ],
+        normal: [
+            {
+                score: {
+                    type: Number
+                },
+                date: {
+                    type: Date,
+                    default: Date.now
+                }
+            }
+        ],
+        hard: [
+            {
+                score: {
+                    type: Number
+                },
+                date: {
+                    type: Date,
+                    default: Date.now
+                }
+            }
+        ]
+    },
 })
 
 let scoreSchema = new mongoose.Schema({
@@ -53,13 +72,15 @@ let scoreSchema = new mongoose.Schema({
 let User = mongoose.model("Users", userSchema);
 let Score = mongoose.model("Scores", scoreSchema);
 
-function getUsers() {
-    return User;
+function registerNewUser(user) {
+    let new_user = User(user);
+    new_user.scores = {
+        "easy": [{"score": 0}],
+        "normal": [{"score": 0}],
+        "hard": [{"score": 0}]
+    }
+    new_user.save().then((doc) => {console.log("Usuario creado: " + doc)});
 }
 
-function getScores() {
-    return Score;
-}
-
-exports.getUsers = getUsers;
-exports.getScores = getScores;
+exports.Users = User;
+exports.registerNewUser = registerNewUser;

@@ -407,7 +407,6 @@ function registerUser() {
             return;
         }
     }
-
     if (document.getElementById("new_pwd").value != document.getElementById("confirm_pwd").value) {
         alert("Las contraseñas deben coincidir");
         return;
@@ -428,7 +427,9 @@ function registerUser() {
             alert(xhr.responseText);
         else {
             alert("Usuario registrado");
-            // Change to user-logged screen
+            showLoginScreen(new_user.username);
+            getPersonalBest(new_user.username);
+            document.getElementById("close_register_modal").click();
         }
     }
 }
@@ -451,27 +452,52 @@ function login() {
             alert("Credenciales incorrectas");
         } else {
             alert("Log in successful");
-            // Change to user-logged screen
-            window.location.reload();
+            showLoginScreen(xhr.responseText);
+            getPersonalBest(xhr.responseText);
+            document.getElementById("close_login_modal").click();
         }
     }
 }
 
 function getTopScores() {
+    // let current_difficulty = sessionStorage.getItem("current_difficulty");
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("GET", "http://localhost:3000/scores/" + current_difficulty);
+    // xhr.setRequestHeader("Content-Type", "application/json");
+    // xhr.send();
+    // xhr.onload = () => {
+    //     if (xhr.status != 200) {
+    //         alert("Algo salio mal")
+    //     } else {
+    //         let best_scores = document.getElementsByName("best_scores");
+    //         for (let i = 0; i < best_scores.length; i++) {
+    //             best_scores[i].innerHTML = JSON.parse(xhr.responseText)[i];
+    //         }
+    //     }
+    // }
+}
+
+function showLoginScreen(username) {
+  document.getElementById("loginIcon").style.display = "none";
+  document.getElementById("loggedUserIcon").style.display = "block";
+  document.getElementById("loggedUsername").innerHTML = username;
+  sessionStorage.setItem("loggedUser", username);
+}
+
+function getPersonalBest(username) {
     let current_difficulty = sessionStorage.getItem("current_difficulty");
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:3000/scores/" + current_difficulty);
+    xhr.open("GET", "http://localhost:3000/users/" + username);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.onload = () => {
-        if (xhr.status != 200) {
-            alert("Algo salio mal")
-        } else {
-            let best_scores = document.getElementsByName("best_scores");
-            for (let i = 0; i < best_scores.length; i++) {
-                best_scores[i].innerHTML = JSON.parse(xhr.responseText)[i];
-            }
-        }
+      let personalBest = document.getElementById("personal_best");
+      if (xhr.status != 200) {
+          personalBest.innerHTML = "----";
+      } else {
+          let user = JSON.parse(xhr.responseText);
+          personalBest.innerHTML = user.scores[current_difficulty][0].score;
+      }
     }
 }
 function bombDisplay(){
@@ -485,17 +511,6 @@ function bombDisplay(){
 function confettiDisplay(){
   
 }
-
-// function getPersonalBest() {
-//     let current_difficulty = sessionStorage.getItem("current_difficulty");
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("GET", "http://localhost:3000/scores/" + );
-//     xhr.setRequestHeader("Content-Type", "application/json");
-//     xhr.send();
-//     xhr.onload = () => {
-        
-//     }
-// }
 
 
 loadBoard();
