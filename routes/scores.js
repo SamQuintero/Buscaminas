@@ -6,13 +6,17 @@ const mongoose = require("mongoose");
 const data_handler = require("../data_handler");
 
 router.get("/:difficulty", (req, res) => {
-    let Scores = data_handler.getScores;
-    
-    res.status(200);
-    let top_3 = Scores[req.params.difficulty].slice(0, 3);
-    for (let i = 0; i < 3; i++) {
-        if (!top_3[i]) top_3[i] = '-';
-    }
+    data_handler.Scores[req.params.difficulty].find({}).then((docs) => {
+        docs.sort(compareScores).reverse();
+        res.status(200).send(docs);
+    })
 });
+
+router.post("/:difficulty", (req, res) => {
+    data_handler.registerNewScore(req.body, req.params.difficulty);
+    res.status(200).send();
+})
+
+const compareScores = (a, b) => a.score - b.score;
 
 module.exports = router;

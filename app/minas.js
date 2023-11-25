@@ -457,21 +457,25 @@ function login() {
 }
 
 function getTopScores() {
-    // let current_difficulty = sessionStorage.getItem("current_difficulty");
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("GET", "http://localhost:3000/scores/" + current_difficulty);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.send();
-    // xhr.onload = () => {
-    //     if (xhr.status != 200) {
-    //         alert("Algo salio mal")
-    //     } else {
-    //         let best_scores = document.getElementsByName("best_scores");
-    //         for (let i = 0; i < best_scores.length; i++) {
-    //             best_scores[i].innerHTML = JSON.parse(xhr.responseText)[i];
-    //         }
-    //     }
-    // }
+  let current_difficulty = sessionStorage.getItem("current_difficulty");
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:3000/scores/" + current_difficulty);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send();
+  xhr.onload = () => {
+    let best_scores_html = document.getElementsByName("best_scores");
+    let best_scores = ['-', '-', '-'];
+    if (xhr.status != 200) {
+      console.log(xhr.statusText);
+    } else {
+      let response = JSON.parse(xhr.responseText);
+      for (let i = 0; i < response.length; i++)
+        best_scores[i] = response[i].score;
+    }
+    for (let i = 0; i < 3; i++)
+      best_scores_html[i].innerHTML = best_scores[i];
+  }
+
 }
 
 function showLoginScreen(username) {
