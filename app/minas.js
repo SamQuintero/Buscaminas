@@ -96,6 +96,10 @@ function banderaRightClick(event){
       minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)-1;
       event.currentTarget.classList.add("bandera");
       event.currentTarget.innerHTML = '<i class="fa-solid fa-flag  " style="color: #f12b2b;"></i>';
+      if(minasNumber.innerHTML=="0"){
+        console.log("si compara")
+        isWin();
+      }
     }
     else{
       minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)+1;
@@ -119,6 +123,10 @@ function revealCell(event) {
         minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)-1;
         event.currentTarget.classList.add("bandera");
         event.currentTarget.innerHTML = '<i class="fa-solid fa-flag  " style="color: #f12b2b;"></i>';
+        if(minasNumber.innerHTML=="0"){
+          console.log("si compara")
+          isWin();
+        }
       }
       else{
         minasNumber.innerHTML=innerHTML=Math.floor(minasNumber.innerHTML)+1;
@@ -279,8 +287,9 @@ function isWin(){
   if(!yetCloseCells){
     console.log("win");
     game_on=false;
+    confettiDisplay();
   }
-
+ 
 
 }
 
@@ -503,10 +512,16 @@ function bombDisplay(){
   setTimeout(()=>{
       Loading.style.display="none";
       
-  }, 4000)
+  }, 3000)
 }
 function confettiDisplay(){
+  console.log("Hola")
+  let Loading=document.getElementById("confetti")
+  Loading.style.display="block";
+  setTimeout(()=>{
+      Loading.style.display="none";
   
+},3000)
 }
 
 

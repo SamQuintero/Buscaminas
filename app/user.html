@@ -30,10 +30,10 @@
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-lg-2 mt-2 mt-lg-0">
               <li class="nav-item me-2 ">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="./minas.html">Inicio</a>
               </li>
               <li class="nav-item me-2">
-                <a class="nav-link" href="#">Score</a>
+                <a class="nav-link" href="./user.html">Score</a>
               </li>
               
             </ul>
@@ -41,44 +41,38 @@
           </div>  
           
           
-          <span style="color: #3A4A40;">
-            <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i> Placeholder
+          <span class="mr-5" style="color: #3A4A40;">
+            <i class="fa-solid fa-user fa-lg mr-5 me-md-2 ms-sm-2  " style="color: #3A4A40;"></i>
+            <span id="loggedUsername">User</span>
           </span>
-          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
-         
+        
         </div>
     </nav>
 
     <!-- SETTINGS MODAL -->
-    <div class="modal fade" id="settings_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal fade" id="image_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <div class="modal-header text-dark p-2">
-              <h5 class="modal-title" style="color: #00262C;">Opciones</h5>
+              <h5 class="modal-title" style="color: #00262C;">Escoga la imagen de usario</h5>
               <button type="button" class="btn-close  mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body d-flex justify-content-center " style="background-color: #E6E6E6;">
             <form>
               <div class="bg-light rounded p-3">
-                <input id="easy" type="radio" class="form-check-input checkbox" name="difficulty_level">
-                <label for="easy" class="form-label"><b>Fácil</b></label>
+                <input id="1" type="radio" class="form-check-input checkbox" name="image_options" value="1">
+                <label for="1" class="form-label"><img src="https://i.ibb.co/C96nqgj/Captura-de-pantalla-2023-11-25-225307.png" alt="1" style="width: 200px"></label>
                 <br>
-                <input id="normal" type="radio" class="form-check-input checkbox" name="difficulty_level" checked>
-                <label for="normal" class="form-label"><b>Normal</b></label>
+                <input id="2" type="radio" class="form-check-input checkbox" name="image_options" value="2" checked>
+                <label for="2" class="form-label"><img src="https://i.ibb.co/XV8LJCp/Captura-de-pantalla-2023-11-25-225127.png" alt="2" style="width: 200px"></label>
                 <br>
-                <input id="hard" type="radio" class="form-check-input checkbox " name="difficulty_level">
-                <label for="hard" class="form-label"><b>Difícil</b></label>
+                <input id="3" type="radio" class="form-check-input checkbox " name="image_options" value="3">
+                <label for="3" class="form-label"><img src="https://i.ibb.co/3rKtNXy/download-1.jpg" alt="3" style="width: 200px"></label>
               </div>
-              <br><br>
-              <div class="bg-light rounded p-3">
-                <input id="music" type="checkbox" class="form-check-input checkbox" checked>
-                <label for="music" class="form-label"><b>Música</b></label>
-                <input id="sound" type="checkbox" class="form-check-input checkbox" checked>
-                <label for="sound" class="form-label"><b>Sonido</b></label>
-              </div>
-              <br><br>
-              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Guardar</button>
+              <br>
+              <button type="button" class="btn" onclick="saveImage()" style="background-color: #8dbc84; color:#f1f1f1" data-bs-dismiss="modal" aria-label="Close">Guardar</button>
               <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              <br><br>
             </form>
           </div>
         </div>
@@ -95,20 +89,20 @@
       </div>
       <div class="row">
         <div class="col-3 d-flex justify-content-center">
-          <img class="border p-3" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;" src="https://i.ibb.co/Svmsj4s/avatar.png" width="60%">
+         <a role="button" data-bs-toggle="modal" data-bs-target="#image_modal"> <img  id="imageUser" title="Editar Imagen"  data-bs-target="#image_modal" class="border p-3" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;" src="https://i.ibb.co/N35fcJq/Captura-de-pantalla-2023-11-25-221755.png"  width="70%"></a>
         </div>
         <div class="col-5 border d-flex align-items-center" style="box-shadow:2px 2px 2px 2px #9c9b9b5c ;">
           <form>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 mx-3">
               <label for="username" class="input-group-text">Nombre de usuario:</label>
               <input id="username" class="form-control bg-light" type="text" placeholder="placeholder" disabled>              
             </div>
-            <div class="input-group mb-3" box-shadow:2px 2px 2px 2px #9c9b9b5c ;">
+            <div class="input-group mb-3 mx-3">
               <label for="useremail" class="input-group-text">E-mail:</label>
               <input id="useremail" class="form-control bg-light" type="text" placeholder="placeholder" disabled>
             </div>
             <div class="d-flex justify-content-end">
-              <button type="button" style="border: none; border-radius: 5px; background-color: #f3d7c2;">Edit</button>
+              <button id="editUser" type="button" onclick="changeUserInfo()" style="border: none; border-radius: 5px; background-color: #f3d7c2; display:block">Edit</button>
             </div>
           </form>
         </div>
@@ -130,23 +124,23 @@
                 <span>Difícil</span>
               </div>
             </div>
-            <div class="row">
+            <div  class="row">
               <div class="col-4 p-2 border">
-                <ol>
+                <ol id="userScoreEasy">
                   <li>Score 1</li>
                   <li>Score 2</li>
                   <li>Score 3</li>
                 </ol>
               </div>
               <div class="col-4 p-2 border">
-                <ol>
+                <ol id="userScoreNormal">
                   <li>Score 1</li>
                   <li>Score 2</li>
                   <li>Score 3</li>
                 </ol>
               </div>
               <div class="col-4 p-2 border">
-                <ol>
+                <ol id="userScoreHard">
                   <li>Score 1</li>
                   <li>Score 2</li>
                   <li>Score 3</li>
@@ -174,7 +168,7 @@
           </div>
           <div class="modal-body">
             <button class="btn" data-bs-dismiss="modal" style="background-color: #81bf75; color:rgb(246, 246, 246)">No</button>
-            <button class="btn" style="background-color: #e06f7a; color:#f8f7f7">Sí, borrar</button>
+            <button class="btn" onclick="borrarCuenta()" style="background-color: #e06f7a; color:#f8f7f7">Sí, borrar</button>
           </div>
         </div>
       </div>
@@ -192,6 +186,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+  <script src="user.js"></script>
 </body>
 
 </html>

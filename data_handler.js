@@ -17,6 +17,10 @@ let userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    image:{
+        type: Number,
+        default:0
+    },
     scores: {
         easy: [
             {
