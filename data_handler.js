@@ -73,8 +73,16 @@ let scoreSchema = new mongoose.Schema({
     }
 })
 
-let User = mongoose.model("Users", userSchema);
-let Score = mongoose.model("Scores", scoreSchema);
+let User = mongoose.model("users", userSchema);
+let Easy_score = mongoose.model("easy_scores", scoreSchema);
+let Normal_score = mongoose.model("normal_scores", scoreSchema);
+let Hard_score = mongoose.model("hard_scores", scoreSchema);
+
+let Scores = {
+    "easy": Easy_score,
+    "normal": Normal_score,
+    "hard": Hard_score
+};
 
 function registerNewUser(user) {
     let new_user = User(user);
@@ -86,5 +94,20 @@ function registerNewUser(user) {
     new_user.save().then((doc) => {console.log("Usuario creado: " + doc)});
 }
 
+function registerNewScore(score, difficulty) {
+    let new_score;
+    switch (difficulty) {
+        case "easy": new_score = Easy_score(score); break;
+        case "normal": new_score = Normal_score(score); break;
+        case "hard": new_score = Hard_score(score); break;
+    }
+    new_score.save().then((doc) => {console.log("Score creado: " + doc)});
+}
+
 exports.Users = User;
+exports.Easy_scores = Easy_score;
+exports.Normal_scores = Normal_score;
+exports.Hard_scores = Hard_score;
+exports.Scores = Scores;
 exports.registerNewUser = registerNewUser;
+exports.registerNewScore = registerNewScore;
