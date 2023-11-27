@@ -187,11 +187,15 @@ function borrarCuenta(){
         if (xhr.status != 200)
             alert(xhr.responseText);
         else {
-            actualUser=sessionStorage.setItem("loggedUser", "");
-         
+            logout();
         }
     }
 
+}
+
+function logout() {
+    sessionStorage.setItem("loggedUser", "");
+    window.location.href = "./minas.html";
 }
 
 getUserInfo(actualUser);
