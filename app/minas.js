@@ -586,7 +586,7 @@ function findBombs() {
 function calculateScore(win) {
   let time = sessionStorage.getItem("timer");
   if (win) {
-    return 1000 - time;
+    return Math.max(1000 - time, 0);
   } else {
     let bombs = findBombs();
     let penalty;
