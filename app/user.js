@@ -193,10 +193,20 @@ function borrarCuenta(){
 
 }
 
+function Loading(){
+    let Loading=document.getElementById("loadingDiv")
+    
+    setTimeout(()=>{
+        Loading.style.display="none";
+        
+    }, 3000)
+}
+
 function logout() {
     sessionStorage.setItem("loggedUser", "");
     window.location.href = "./minas.html";
 }
 
+Loading();
 getUserInfo(actualUser);
 

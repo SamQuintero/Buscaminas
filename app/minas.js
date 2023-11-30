@@ -5,6 +5,7 @@ let bombs;
 let matriz=[];
 let bandera;
 let firstRound;
+let sonido=1;
 
 let rows;
 let cols;
@@ -138,11 +139,19 @@ function revealCell(event) {
 
     //Abrir casillas
     else if(!event.currentTarget.className.includes("bandera")) {
-        
+      if (sonido==1){
+        var audio = document.getElementById('clickSound');
+        audio.play(); 
+      }
+     
       let n = matriz[fila][columna];
       event.currentTarget.innerHTML = n;
       //Si se preciona una bomba
       if (n == 666){
+        if (sonido==1){
+          var audioend = document.getElementById('endGame');
+          audioend.play(); 
+        }
         //Si es la primera vez que se clickea se tiene que evitar que sea una bomba si lo es se vuelven a mover las bombas de lugar
         if(firstRound==1){
           matrizGrid();
@@ -303,6 +312,25 @@ function saveSettings() {
         if (difficulty_options[i].checked)
             settings_difficulty = difficulty_options[i].value;
     }
+
+    let check=document.getElementById("music");
+    let musica=document.getElementById("musica");
+    if(!check.checked){
+      console.log("Audio no")
+      musica.removeAttribute("autoplay");
+       musica.muted = true;
+    }
+    else{
+      musica.muted=false;
+      musica.setAttribute("autoplay", "");
+    }
+    let audio=document.getElementById("sound")
+    if(audio.checked){
+      sonido=1;
+    }
+    else
+    sonido=0;
+
 
     sessionStorage.setItem("current_difficulty", settings_difficulty);
 
@@ -527,6 +555,12 @@ function confettiDisplay(){
   
 },3000)
 }
+function setAudio(){
+ 
+  
+  
+}
+
 
 
 loadBoard();
@@ -537,3 +571,4 @@ if (loggedUser) {
   showLoginScreen(loggedUser);
   getPersonalBest(loggedUser);
 }
+document.getElementById("musica").setAttribute("autoplay","");
