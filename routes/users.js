@@ -33,12 +33,14 @@ router.get("/:username", (req, res) => {
 router.get("/:email/:password", (req, res) => {
     data_handler.Users.find({
         email: {$regex:req.params.email},
-        password: {$regex:req.params.password}
     }).then((docs) => {
         if (docs.length == 0) {
             res.status(404).send();
         } else {
-            res.status(200).send(docs[0].username);
+            if (data_handler.decryptPwd(req.params.password, docs[0].password))
+                res.status(200).send(docs[0].username);
+            else
+                res.status(409).send();
         }
     })
 });

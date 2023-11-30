@@ -85,6 +85,7 @@ let Scores = {
 };
 
 function registerNewUser(user) {
+    user.password = encryptPwd(user.password);
     let new_user = User(user);
     new_user.scores = {
         "easy": [{"score": 0}],
@@ -104,6 +105,10 @@ function registerNewScore(score, difficulty) {
     new_score.save().then((doc) => {console.log("Score creado: " + doc)});
 }
 
+function decryptPwd(pwd1, pwd2) {
+    return bcrypt.compareSync(pwd1, pwd2);
+}
+
 exports.Users = User;
 exports.Easy_scores = Easy_score;
 exports.Normal_scores = Normal_score;
@@ -111,3 +116,4 @@ exports.Hard_scores = Hard_score;
 exports.Scores = Scores;
 exports.registerNewUser = registerNewUser;
 exports.registerNewScore = registerNewScore;
+exports.decryptPwd = decryptPwd;
