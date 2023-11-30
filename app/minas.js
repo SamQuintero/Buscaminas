@@ -28,7 +28,14 @@ setInterval(() => {
 
 
 function loadBoard() {
+    getTopScores();
+    let loggedUser = sessionStorage.getItem("loggedUser");
+    if (loggedUser) {
+      showLoginScreen(loggedUser);
+      getPersonalBest(loggedUser);
+    }
     game_on=true;
+    document.getElementById("current_score").innerHTML = 0;
     sessionStorage.setItem("timer", 0);
     document.getElementById("timer").innerHTML = "00:00";
     seconds = minutes = 0;
@@ -89,7 +96,9 @@ function loadBoard() {
     }
     matrizGrid();
 }
+
 function banderaRightClick(event){
+  if (event.currentTarget.className.includes("pressed")) return;
     const eventoClic = new Event('click');
     const fila = event.target.dataset.fila;
     const columna = event.target.dataset.columna;
@@ -98,7 +107,6 @@ function banderaRightClick(event){
       event.currentTarget.classList.add("bandera");
       event.currentTarget.innerHTML = '<i class="fa-solid fa-flag  " style="color: #f12b2b;"></i>';
       if(minasNumber.innerHTML=="0"){
-        console.log("si compara")
         isWin();
       }
     }
@@ -125,7 +133,6 @@ function revealCell(event) {
         event.currentTarget.classList.add("bandera");
         event.currentTarget.innerHTML = '<i class="fa-solid fa-flag  " style="color: #f12b2b;"></i>';
         if(minasNumber.innerHTML=="0"){
-          console.log("si compara")
           isWin();
         }
       }
@@ -163,8 +170,10 @@ function revealCell(event) {
           if (n1==0)event.currentTarget.innerHTML=numbers[0];
         }
         else{
+          document.getElementById("current_score").innerHTML = calculateScore(false);
           mostrarTodo();
           bombDisplay();
+          registerScore();
         }
        
       }
@@ -175,7 +184,6 @@ function revealCell(event) {
         event.currentTarget.removeEventListener('click', revealCell);
         //Recursividad si la casilla no tiene número
         if(minasNumber.innerHTML=="0"){
-          console.log("si compara")
           isWin();
         }
         if(event.currentTarget.innerHTML==""){
@@ -294,9 +302,10 @@ function isWin(){
     }
   }
   if(!yetCloseCells){
-    console.log("win");
     game_on=false;
     confettiDisplay();
+    document.getElementById("current_score").innerHTML = calculateScore(true);
+    registerScore();
   }
  
 
@@ -333,8 +342,6 @@ function saveSettings() {
 
 
     sessionStorage.setItem("current_difficulty", settings_difficulty);
-
-    getTopScores();
     loadBoard();
 }
 
@@ -547,7 +554,6 @@ function bombDisplay(){
   }, 3000)
 }
 function confettiDisplay(){
-  console.log("Hola")
   let Loading=document.getElementById("confetti")
   Loading.style.display="block";
   setTimeout(()=>{
@@ -562,13 +568,81 @@ function setAudio(){
 }
 
 
+function findBombs() {
+  let bombs = 0;
+  let current_difficulty = sessionStorage.getItem("current_difficulty");
+  let board = document.getElementsByClassName("cell_" + current_difficulty);
+
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].className.includes("pressed")) continue;
+
+    let row = board[i].dataset.fila;
+    let col = board[i].dataset.columna;
+
+    if (matriz[row][col] == 666) {
+      if (!board[i].className.includes("bandera"))
+        bombs++;
+    }
+  }
+  return bombs;
+}
+
+function calculateScore(win) {
+  let time = sessionStorage.getItem("timer");
+  if (win) {
+    return 1000 - time;
+  } else {
+    let bombs = findBombs();
+    let penalty;
+    switch (sessionStorage.getItem("current_difficulty")) {
+      case "easy": penalty = 1000 / (10); break;
+      case "normal": penalty = 1000 / (40); break;
+      case "hard": penalty = 1000 / (90); break;
+    }
+    return Math.max(Math.floor(1000 - time - (bombs * penalty)), 0);
+  }
+}
+
+
+function registerScore() {
+  if (!sessionStorage.getItem("loggedUser")) return;
+  let current_difficulty = sessionStorage.getItem("current_difficulty");
+  let current_user = sessionStorage.getItem("loggedUser");
+  let current_score = parseInt(document.getElementById("current_score").innerHTML);
+
+  let score = {
+    username: current_user,
+    score: current_score
+  };
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://localhost:3000/scores/" + current_difficulty);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(score));
+  xhr.onload = () => {
+    if (xhr.status != 200) {
+      console.log(xhr.statusText);
+      console.log("No se pudo guardar el puntaje");
+    }
+  }
+
+  let user_score = {
+    score: current_score,
+    date: Date.now()
+  };
+
+  let xhr_ = new XMLHttpRequest();
+  xhr_.open("PUT", "http://localhost:3000/users/scores/" + current_user + "/" + current_difficulty);
+  xhr_.setRequestHeader("Content-Type", "application/json");
+  xhr_.send(JSON.stringify(user_score));
+  xhr_.onload = () => {
+    if (xhr_.status != 200) {
+      console.log(xhr_.statusText);
+      console.log("No se pudo guardar el puntaje");
+    }
+  }
+}
 
 loadBoard();
 sessionStorage.setItem("current_difficulty", "normal");
-getTopScores();
-let loggedUser = sessionStorage.getItem("loggedUser");
-if (loggedUser) {
-  showLoginScreen(loggedUser);
-  getPersonalBest(loggedUser);
-}
 document.getElementById("musica").setAttribute("autoplay","");
