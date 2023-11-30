@@ -44,7 +44,7 @@ function setInfo(user){
         score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
             if(score[i].score==0)continue;
-            easy[i].innerHTML = score[i].score +" - "+ score[1].date.substring(0, 10);
+            easy[i].innerHTML = score[i].score +" : "+ score[1].date.substring(0, 10);
         }
     }
     else{
@@ -61,14 +61,14 @@ function setInfo(user){
         score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
             if(score[i].score==0)continue;
-            normal[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+            normal[i].innerHTML = score[i].score+" : "+ score[1].date.substring(0, 10);
         }
     }else{
         let normal= document.getElementsByClassName("ScoreNormal");
         let score=user.scores.normal;
         score.sort(compareScores).reverse();
         for(let i=0; i< 3; i++){
-            normal[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+            normal[i].innerHTML = score[i].score+" : "+ score[1].date.substring(0, 10);
         }
     }
     if(user.scores.hard.length<=3){
@@ -77,7 +77,7 @@ function setInfo(user){
         score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
             if(score[i].score==0)continue;
-            hard[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+            hard[i].innerHTML = score[i].score+" : "+ score[1].date.substring(0, 10);
         }
     }
     else{
@@ -85,7 +85,7 @@ function setInfo(user){
         let score=user.scores.hard;
         score.sort()
         for(let i=0; i< 3; i++){
-            hard[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+            hard[i].innerHTML = score[i].score+" : "+ score[1].date.substring(0, 10);
         }
 
     }
