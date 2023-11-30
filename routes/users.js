@@ -93,4 +93,40 @@ router.delete('/',(req,res)=>{
             res.send(doc);
     }).catch((err)=>console.log(err));
 });
+
+router.put('/scores/:username/:difficulty', (req, res) => {
+    let score = req.body;
+    let difficulty = req.params.difficulty;
+    
+    data_handler.Users.find({
+        username: {$regex:req.params.username}
+    }).then((docs) => {
+        if (docs.length == 0) {
+            res.status(404).send();
+        } else {
+            let user = docs[0];
+            let scores = user.scores[difficulty];
+            scores.push(score);
+            scores.sort(compareScores).reverse();
+            scores = scores.slice(0, 10);
+            let updated_score = {
+                scores: {
+                    easy: user.scores.easy,
+                    normal: user.scores.normal,
+                    hard: user.scores.hard
+                }
+            };
+            updated_score.scores[difficulty] = scores;
+            console.log(updated_score);
+            data_handler.Users.findByIdAndUpdate(user.id, updated_score, {new: true}).then((doc) => {
+                res.status(200).send();
+            }).catch((err) => {res.status(409).send()});
+        }
+    });
+
+});
+
+const compareScores = (a, b) => a.score - b.score;
+
+
 module.exports = router;
