@@ -193,6 +193,14 @@ function borrarCuenta(){
     }
 
 }
-
+function Loading(){
+    let Loading=document.getElementById("loadingDiv")
+    
+    setTimeout(()=>{
+        Loading.style.display="none";
+        
+    }, 3000)
+}
+Loading()
 getUserInfo(actualUser);
 

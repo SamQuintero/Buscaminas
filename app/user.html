@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kdam+Thmor+Pro&family=Patua+One&family=Pixelify+Sans:wght@700&family=Prompt:ital,wght@1,900&family=Titan+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </head>
 
@@ -81,6 +82,12 @@
     
   </header>
   <main>
+    <div id="loadingDiv" class="cover-screen" >
+      <lottie-player id="loading"  src="https://lottie.host/a2406f96-dd0f-47f4-96b6-9abeff9aa02e/LNSATYrSDo.json"  speed="1" style="width: 300px; height: 300px;  " loop autoplay></lottie-player>
+    </div>
+    
+
+
     <div class="container m-3">
       <div class="row">
         <div>
@@ -153,7 +160,6 @@
       <div class="row mt-5">
         <div>
           <button class="btn " style="background-color:rgb(53, 159, 157); color:#fcfcfc">Cerrar sesion</button>
-          <button class="btn" style="background-color:#A48ABD; color:#fcfcfc">Borrar Puntajes</button>
           <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_modal" style="background-color: #e06f7a; color:#f8f7f7">Borrar Cuenta</button>
         </div>
       </div>
