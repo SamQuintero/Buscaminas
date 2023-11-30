@@ -98,6 +98,7 @@ function loadBoard() {
 }
 
 function banderaRightClick(event){
+  if (!game_on) return;
   if (event.currentTarget.className.includes("pressed")) return;
     const eventoClic = new Event('click');
     const fila = event.target.dataset.fila;
@@ -119,6 +120,7 @@ function banderaRightClick(event){
 // Función de ejemplo para manejar el clic en una casilla
 function revealCell(event) {
   
+    if (!game_on) return;
     const eventoClic = new Event('click');
     const fila = event.target.dataset.fila;
     const columna = event.target.dataset.columna;
