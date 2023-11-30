@@ -550,7 +550,7 @@ function bombDisplay(){
   setTimeout(()=>{
       Loading.style.display="none";
       
-  }, 3000)
+  }, 2000)
 }
 function confettiDisplay(){
   let Loading=document.getElementById("confetti")
