@@ -216,7 +216,7 @@ function Loading(){
     setTimeout(()=>{
         Loading.style.display="none";
         
-    }, 2000)
+    }, 1000)
 }
 
 function logout() {
