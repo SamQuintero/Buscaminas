@@ -41,11 +41,18 @@
           </div>  
           
           
-          <a type="text"  data-bs-toggle="modal" role="button" data-bs-target="#login_modal" style="color: #3A4A40;;">
-            <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i> Ingresar
-          </a>
-          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
-         
+          <div id="loginIcon">
+            <a type="text"  data-bs-toggle="modal" role="button" data-bs-target="#login_modal" style="color: #3A4A40;;">
+              <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2 " style="color: #3A4A40;"></i><div id="UserName"  style="display: none;"></div> <span>Ingresar</span>
+            </a>
+           </div> 
+           <div id="loggedUserIcon" style="display: none;">
+            <a role="button" data-bs-toggle="modal" href="./user.html" style="color: #3A4A40;">
+                <i class="fa-solid fa-user fa-lg me-md-2 ms-sm-2" style="color: #3A4A40;"></i>
+                <span id="loggedUsername">User</span>
+            </a>
+          </div>
+          <a class="nav-link mx-3" data-bs-toggle="modal" role="button" data-bs-target="#settings_modal" onclick="openSettings()"><i class="fa-solid fa-gear fa-xl" style="color: #3A4A40;"></i></a>
         </div>
     </nav>
 
@@ -77,8 +84,8 @@
                 <label for="sound" class="form-label"><b>Sonido</b></label>
               </div>
               <br><br>
-              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Guardar</button>
-              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1" data-bs-dismiss="modal" aria-label="Close" onclick="saveSettings()">Guardar</button>
+              <button type="button" class="btn " style="background-color: #e47e88; color:#e7e7e7" data-bs-dismiss="modal" aria-label="Close" onclick="cancelSettings()">Cancelar</button>
             </form>
           </div>
         </div>
@@ -91,22 +98,22 @@
         <div class="modal-content">
           <div class="modal-header text-light p-2">
             <h5 class="modal-title" id="modalTitleId" style="color:#00262C" >Iniciar sesión</h5>
-              <button type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button id="close_login_modal" type="button" class="btn-close mr-1" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('login_input')"></button>
           </div>
           <div class="modal-body">
             <form>
               <label for="email" class="form-label">Correo</label>
               <div class="input-group mb-3">
-                <input type="text" id="email" class="form-control" placeholder="Ingresa tu correo" required>
+                <input type="text" id="email" class="form-control" placeholder="Ingresa tu correo" name="login_input" required>
                 <i class='fas fa-user-alt input-group-text' style="padding-top:10px;"></i>
               </div>
               <label for="pwd" class="form-label">Contraseña</label>
               <div class="input-group mb-3">
-                <input type="text" id="pwd" class="form-control" placeholder="Ingresa tu contraseña" required>
+                <input type="password" id="pwd" class="form-control" placeholder="Ingresa tu contraseña" name="login_input" required>
                 <i class='fas fa-key input-group-text' style="padding-top:10px;"></i>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn" style="background-color:#A48ABD; color:#fcfcfc">Login</button>
+                <button type="button" class="btn" style="background-color:#A48ABD; color:#fcfcfc" onclick="login()">Login</button>
               </div>
             </form>
           </div>
@@ -125,28 +132,28 @@
           <form>
             <div class="modal-header">
               <h5 class="modal-title" id="modalTitleId">Registrarse</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button id="close_register_modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput('register_input')"></button>
             </div>
             <div class="modal-body">
               <div class="container">
                 <div class="row">
                   <div class="col-12 mb-2">
-                    <input type="text" id="new_userName" class="form-control" placeholder="Nombre de usuario" required>
+                    <input type="text" id="new_userName" class="form-control" placeholder="Nombre de usuario" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="text" id="new_email" class="form-control" placeholder="E-mail" required>
+                    <input type="text" id="new_email" class="form-control" placeholder="E-mail" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="password" id="new_pwd" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" id="new_pwd" class="form-control" placeholder="Contraseña" name="register_input" required>
                   </div>
                   <div class="col-12 mb-2">
-                    <input type="password" id="confirm_pwd" class="form-control" placeholder="Confirmar contraseña" required>
+                    <input type="password" id="confirm_pwd" class="form-control" placeholder="Confirmar contraseña" name="register_input" required>
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn" style="background-color: #8dbc84; color:#f1f1f1">Registrarse</button>
+              <button type="button" class="btn" style="background-color: #8dbc84; color:#f1f1f1" onclick="registerUser()">Registrarse</button>
             </div>
           </form>
         </div>
@@ -325,6 +332,10 @@
         </div>
       </div>
     </div>
+    <audio  id="musica" autoplay loop><source src="./Joji.mp3" type="audio/mpeg"> </audio>
+    <audio id="clickSound" src="./mouse-click.mp3"></audio>
+    <audio id="endGame" src="./endGame.wav"></audio>
+    <button id="musicabtn" onclick="playMusic()" style="display: none;"></button>
   </main>
   <footer>
     <!-- place footer here -->

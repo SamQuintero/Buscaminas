@@ -325,7 +325,6 @@ function saveSettings() {
     let check=document.getElementById("music");
     let musica=document.getElementById("musica");
     if(!check.checked){
-      console.log("Audio no")
       musica.removeAttribute("autoplay");
        musica.muted = true;
     }
