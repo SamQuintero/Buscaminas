@@ -19,7 +19,7 @@ function showScores(scores, difficulty) {
 
     for (let i = 0; i < scores.length; i++) {
         usernames[i].innerHTML = scores[i].username;
-        dates[i].innerHTML = scores[i].date;
+        dates[i].innerHTML = scores[i].date.substring(0, 10);
         scores_[i].innerHTML = scores[i].score;
     }
 }

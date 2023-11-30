@@ -1,4 +1,5 @@
 
+
 let actualUser=sessionStorage.getItem("loggedUser");
 
 function getUserInfo(actualUser){
@@ -36,40 +37,56 @@ function setInfo(user){
             document.getElementById('imageUser').src="https://i.ibb.co/3rKtNXy/download-1.jpg";break;
 
     }
-    
+    console.log(user.scores.easy[0].score);
     if(user.scores.easy.length<=3){
-        let easy= document.getElementById("userScoreEasy").innerHTML='';
+        let easy= document.getElementsByClassName("ScoreEasy");
         let score=user.scores.easy;
-        score.sort()
+        score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
-            let scoreText = document.createTextNode(score[i].score);
-            easy.innerHTML=document.createElement("li").appendChild(scoreText);
+            if(score[i].score==0)continue;
+            easy[i].innerHTML = score[i].score +" - "+ score[1].date.substring(0, 10);
         }
     }
     else{
-
+        let easy= document.getElementsByClassName("ScoreEasy");
+        let score=user.scores.easy;
+        score.sort(compareScores).reverse();
+        for(let i=0; i< 3; i++){
+            easy[i].innerHTML = score[i].score+" : "+ score[1].date.substring(0, 10);
+        }
     }
     if(user.scores.normal.length<=3){
-        let easy= document.getElementById("userScoreNormal").innerHTML='';
+        let normal= document.getElementsByClassName("ScoreNormal");
         let score=user.scores.normal;
-        score.sort()
+        score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
-            let scoreText = document.createTextNode(score[i].score);
-            easy.innerHTML=document.createElement("li").appendChild(scoreText);
+            if(score[i].score==0)continue;
+            normal[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
         }
     }else{
-
+        let normal= document.getElementsByClassName("ScoreNormal");
+        let score=user.scores.normal;
+        score.sort(compareScores).reverse();
+        for(let i=0; i< 3; i++){
+            normal[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+        }
     }
     if(user.scores.hard.length<=3){
-        let easy= document.getElementById("userScoreHard").innerHTML='';
+        let hard= document.getElementsByClassName("ScoreHard");
         let score=user.scores.hard;
-        score.sort()
+        score.sort(compareScores).reverse();
         for(let i=0; i< score.length; i++){
-            let scoreText = document.createTextNode(score[i].score);
-            easy.innerHTML=document.createElement("li").appendChild(scoreText);
+            if(score[i].score==0)continue;
+            hard[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
         }
     }
     else{
+        let hard= document.getElementsByClassName("ScoreHard");
+        let score=user.scores.hard;
+        score.sort()
+        for(let i=0; i< 3; i++){
+            hard[i].innerHTML = score[i].score+" - "+ score[1].date.substring(0, 10);
+        }
 
     }
 
@@ -199,13 +216,15 @@ function Loading(){
     setTimeout(()=>{
         Loading.style.display="none";
         
-    }, 3000)
+    }, 2000)
 }
 
 function logout() {
     sessionStorage.setItem("loggedUser", "");
     window.location.href = "./minas.html";
 }
+
+const compareScores = (a, b) => a.score - b.score;
 
 Loading();
 getUserInfo(actualUser);

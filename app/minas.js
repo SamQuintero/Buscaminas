@@ -561,11 +561,6 @@ function confettiDisplay(){
   
 },3000)
 }
-function setAudio(){
- 
-  
-  
-}
 
 
 function findBombs() {
