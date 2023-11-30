@@ -85,7 +85,7 @@ let Scores = {
 };
 
 function registerNewUser(user) {
-    user.password = encryptPwd(user.password);
+    user.password = bcrypt.hashSync(user.password, 10);
     let new_user = User(user);
     new_user.scores = {
         "easy": [{"score": 0}],
