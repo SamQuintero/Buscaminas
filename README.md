@@ -7,12 +7,12 @@ Web Application for Minesweeper gaming, where players can log in, view their sco
 The repository needs to be downloaded or cloned to a location accessible to you. To install it simply do the following from your terminal:
 
 ```bash
-git clone https://github.com/haik-x/TextClassifier.git
+  https://github.com/SamQuintero/Buscaminas.git
 ```
 
 ## Fetures
 
 * The game is available in three different levels. 
-* In every game, you earn a score that is shown in your profile. 
+* In every game, you earn a score that is stored and shown in your profile. 
 * Settings such as sound and music are available. 
-* Every user can see the best scores in the different levels.
+* Every user can see the best scores for each difficulty level.
