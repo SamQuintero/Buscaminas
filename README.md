@@ -12,7 +12,7 @@ git clone https://github.com/haik-x/TextClassifier.git
 
 ## Fetures
 
-*The game is available in three different levels. 
-*In every game, you earn a score that is shown in your profile. 
-*Settings such as sound and music are available. 
-*Every user can see the best scores in the different levels.
+* The game is available in three different levels. 
+* In every game, you earn a score that is shown in your profile. 
+* Settings such as sound and music are available. 
+* Every user can see the best scores in the different levels.
